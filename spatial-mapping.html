@@ -29,13 +29,12 @@
             <li><a href="./calendar.html">Course Schedule</a></li>
             <li><a href="./policies.html">Policies</a></li>
             <li><a href="./office-hours.html">Course Staff</a></li>
-            
             <li><a href="./project-examples.html">Project Examples</a></li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                  <li><a href="./reading.html">Reccomended Reading</a></li>
+                  <li><a href="./materials.html">Course Materials</a></li>
                   <li><a href="./stats-reference.html">Statistics Reference</a></li>
                   <li><a href="./python-reference.html">Python Reference</a></li>
                   <li><a href="./data-portals.html">Data Portals</a></li>
@@ -45,11 +44,11 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Topics <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                  <li><a href="./assignment-1.html">Census Data</a></li>
-                  <li><a href="./assignment-2.html">Data Visualization</a></li>
-                  <li><a href="./final-project.html">Story Mapping</a></li>
-                  <li><a href="./final-project.html">Citizen Science</a></li>
-                  <li><a href="./final-project.html">Spatial Data and Mapping</a></li>
+                  <li><a href="./census-data.html">Census Data</a></li>
+                  <li><a href="./data-viz.html">Data Visualization</a></li>
+                  <li><a href="./story-mapping.html">Story Mapping</a></li>
+                  <li><a href="./citizen-science.html">Citizen Science</a></li>
+                  <li><a href="./spatial-mapping.html">Spatial Data and Mapping</a></li>
             </ul>
           </li>
 
@@ -62,12 +61,14 @@
 <section id="content">
 
 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+</div>
 
-  <div class="container">
-    <h2>Reccomended Reading</h2>
 
 
-<!-- <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
@@ -93,10 +94,9 @@
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-</script> -->
+</script>
 
 
-</section><!-- /#content -->
   </div>
   <footer id="contentinfo" class="body">
   </footer><!-- /#contentinfo -->
@@ -108,46 +108,6 @@
   <!-- Latest compiled and minified Bootstrap JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- <script>
-  $(document).ready(function() {
 
-    // Announcements
-    var announcementIndex = 0;
-
-    function setAnnouncements(offset) {
-      var newIndex = announcementIndex  + offset;
-      var announcementNumber = $('.announcement').length;
-
-      if (newIndex < 0 || newIndex >= announcementNumber) {
-        return;
-      }
-
-      $('#announcement-' + announcementIndex).hide(0, function() {
-        $('#announcement-' + newIndex).show(0);
-      });
-
-      announcementIndex = newIndex;
-
-      if (announcementIndex >= announcementNumber - 1) {
-        $('#announcement-' + announcementIndex + ' .announcement-btn-older')
-          .addClass('disabled');
-      }
-      if (announcementIndex === 0) {
-        $('#announcement-' + announcementIndex + ' .announcement-btn-newer')
-          .addClass('disabled');
-      }
-    }
-    setAnnouncements(0);
-
-    $('.announcement-btn-newer > a').click(function() {
-      setAnnouncements(-1);
-    });
-    $('.announcement-btn-older > a').click(function() {
-      setAnnouncements(1);
-    });
-  });
-
-</script>
- -->
 </body>
 </html>
