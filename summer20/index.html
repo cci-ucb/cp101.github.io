@@ -20,20 +20,22 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="./">
-          CP 101 Spring 2020
+          CP 101 Summmer 2020
         </a>
 
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li><a href="./calendar.html">Course Schedule</a></li>
-            <li><a href="./policies.html">Policies</a></li>
-            <li><a href="./office-hours.html">Course Staff</a></li>
+            <!-- <li><a href="./policies.html">Policies</a></li> -->
+            <!-- <li><a href="./office-hours.html">Course Staff</a></li>-->
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project Examples <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                  <li><a href="./assignment1-2.html">Assignment 1 and 2</a></li>
+                  <li><a href="./assignment-1.html">Assignment 1</a></li>
+                  <li><a href="./assignment-2.html">Assignment 2</a></li>
                   <li><a href="./assignment-3.html">Assignment 3</a></li>
+                  <li><a href="./assignment-4.html">Assignment 4</a></li>
             </ul>
           </li>
 
@@ -84,7 +86,7 @@
 <section id="content">
 <h3> Course Description</h3>
 This course (1) provides a basic intro to census and economic data collection, processing, and analysis; (2) explores visualization and story mapping techniques in planning; (3) teaches methods of urban analytics; and (4) provides a socio-economic-political context for the urban analythics movement, focusing on data ethics and governance.
-<h5>The Spring 2020 syllabus for the course can be found <a href="./assets/CP101 Syllabus 2020 1.20.20.pdf">here</a></h5>
+<h5>The Summer 2020 syllabus for the course can be found <a href="./assets/cp101 summer 2020_SantanaP.pdf">here</a></h5>
 
 <h3> Synopsis</h3>
 CP 101 introduces students to the systematic analysis of urban data in its institutional context. Recognizing that defining this context relies on critical thinking with regard to economic, social, and environmental outcomes, this course explores how stakeholders conceptualize “smart” and inclusive urbanity. Accordingly, this course teaches students systematic approaches to collecting, analyzing, modeling, and interpreting quantitative and qualitative data used to inform robust research, and, ultimately, urban planning practice and policymaking. Beyond instruction in urban data science and analytics, students will be introduced to theory and critical discourses on topics such as big data, open data and e-governance. Instructors will expect students to engage with technical and theoretical - with particular focus placed on ethical - considerations associated with these subjects in lecture and laboratory sections. The course will introduce students to programming in Excel and Python, using open source software, accessing open and scraped data, and other tools and techniques for urban analysis.
@@ -110,7 +112,8 @@ In the course’s final module, students will use knowledge acquired in earlier 
 </div>
 
 
-<!-- <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+<!-- <script type="text/javascript">if (!doc
+ent.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
@@ -153,24 +156,18 @@ In the course’s final module, students will use knowledge acquired in earlier 
 
 <!-- <script>
   $(document).ready(function() {
-
     // Announcements
     var announcementIndex = 0;
-
     function setAnnouncements(offset) {
       var newIndex = announcementIndex  + offset;
       var announcementNumber = $('.announcement').length;
-
       if (newIndex < 0 || newIndex >= announcementNumber) {
         return;
       }
-
       $('#announcement-' + announcementIndex).hide(0, function() {
         $('#announcement-' + newIndex).show(0);
       });
-
       announcementIndex = newIndex;
-
       if (announcementIndex >= announcementNumber - 1) {
         $('#announcement-' + announcementIndex + ' .announcement-btn-older')
           .addClass('disabled');
@@ -181,7 +178,6 @@ In the course’s final module, students will use knowledge acquired in earlier 
       }
     }
     setAnnouncements(0);
-
     $('.announcement-btn-newer > a').click(function() {
       setAnnouncements(-1);
     });
@@ -189,7 +185,6 @@ In the course’s final module, students will use knowledge acquired in earlier 
       setAnnouncements(1);
     });
   });
-
 </script>
  -->
 </body>
