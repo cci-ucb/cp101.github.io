@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>City and Regional Planning 101</title>
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="./theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./">
+          CP 101
+        </a>
+
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <!--<li><a href="./calendar.html">Course Schedule</a></li>-->
+            <li><a href="./policies.html">Policies</a></li>
+            <!--<li><a href="./office-hours.html">Course Staff</a></li>-->
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project Examples <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                  <li><a href="./assignment-1.html">Assignment 1</a></li>
+                  <li><a href="./assignment-2.html">Assignment 2</a></li>
+                  <li><a href="./assignment-3.html">Assignment 3</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                  <li><a href="./materials.html">Course Materials</a></li>
+                  <li><a href="./stats-reference.html">Statistics Reference</a></li>
+                  <li><a href="./story-mapping.html">Story Mapping</a></li>
+                  <!-- <li><a href="./python-reference.html">Python Reference</a></li> -->
+                  <li><a href="./data-portals.html">Data Portals</a></li>
+            </ul>
+          </li>
+
+          <!-- <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course Topics <span class="caret"></span></a> -->
+            <!-- <ul class="dropdown-menu"> --> 
+                  <!-- <li><a href="./census-data.html">Census Data</a></li>
+                  <li><a href="./data-visualization.html">Data Visualization</a></li> -->
+                  <!-- <li><a href="./story-mapping.html">Story Mapping</a></li> -->
+                  <!-- <li><a href="./citizen-science.html">Citizen Science</a></li>
+                  <li><a href="./mapping.html">Spatial Data and Mapping</a></li> -->
+            </ul>
+          </li>
+
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container">
+<section id="content">
+
+  <div class="container">
+    
+
+    
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<h2> Data Sources</h2>
+<div class="cell border-box-sizing code_cell rendered">
+<p> There are an abundance of open data sources available online in a range of topics related to transportation, housing, energy, environment, and many other aspects of urbanism. Here, you will find some examples of open data sources that previous students have used in their projects or that are widely used in research. These are great places to start when developing project ideas, but represent just a tiny sample of the open data available online. It is worth digging around online to find interesting and unique datasets!</p>
+</div>
+
+<hr/>
+
+<h3> Open Administrative Data</h3>
+<div class="cell border-box-sizing code_cell rendered">
+<p> Most large cities, counties and even regions in California and throughout the U.S. have data portals that make data on a wide variety of topics available to the public. The nature and extent of data available varies widely, and is changing quickly. New data portals are cropping up all the time.</p>
+
+<ul>
+  <li><a href="https://data.ca.gov/">State of California open data portal</a></li>
+  <li><a href="https://docs.google.com/spreadsheets/d/14ZG3aneUu6qqLwfy3z0qIebsCeGVQY_Ets9LoRpSIAY/edit#gid=1663045439">List of all California city and county open data portals</a></li>
+  <li><a href="https://docs.google.com/spreadsheets/d/1Py3i0fsPtLllSb9nmw0PYG_ZuZ5wnvFPTG0gFip2GsM/edit#gid=1063611908">List of open data webtool examples</a></li>
+  <li><a href="https://opendata.cityofnewyork.us/wp-content/uploads/2019/09/2019_OpenDataForAllReport.pdf">NYC Open data for all report</a></li>
+  <li><a href="https://www.datainnovation.org/2014/08/state-open-data-policies-and-portals/">State open data policies and portals report</a></li>
+  
+</ul>
+
+</div>
+
+<hr/>
+
+<h3> Transportation Data</h3>
+<div class="cell border-box-sizing code_cell rendered">
+<p><a href="https://gtfs.org/">GTFS (general transit feed specification)</a> is the most common format for transit data in the U.S. Many transit operators make their data publicly available. Here are a few examples:</p>
+
+<ul>
+  <li><a href="https://data.ca.gov/">State of California open data portal</a></li>
+  <li><a href="https://transitfeeds.com/">Open GTFS data from around the world</a></li>
+  <li><a href="https://www.sfmta.com/reports/gtfs-transit-data">SFMTA GTFS data</a></li>
+  <li><a href="https://datamine.mta.info/">NY MTA GTFS data</a></li>
+  <li><a href="http://www.actransit.org/planning-focus/data-resource-center/">AC Transit Data</a></li>
+ 
+</ul>
+</div>
+
+<hr/>
+
+
+<h3> Environmental and Health Data</h3>
+<div class="cell border-box-sizing code_cell rendered">
+
+
+<ul>
+  <li><a href="https://openpv.nrel.gov/">Open PV project (NREL)</a></li>
+  <li><a href="https://www.purpleair.com/map#1/25/-30">Purple Air</a></li>
+  <li><a href="https://www.eia.gov/state/">US Energy Information Administration</a></li>
+  <li><a href="https://wonder.cdc.gov/mcd-icd10.html">Center for Disease Control data</a></li>
+  <li><a href="https://www.kff.org/state-category/health-status/">Health status indicators by state</a></li>
+  <li><a href="https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-30">Cal Enviroscreen</a></li>
+  <li><a href="https://oehha.ca.gov/">CA Office of Environmental Health Hazard Assessment</a></li>
+  <li><a href="https://www.epa.gov/superfund">EPA superfund data</a></li>
+
+</ul>
+
+
+</div>
+
+<hr/>
+
+<h3>Private Sector Data</h3>
+<div class="cell border-box-sizing code_cell rendered">
+<p> Increasingly, private companies are making some of their data available through APIs. Webscraping, a technique taught in the course, can also be a useful tool for obtaining data from online platforms. When using APIs and/or webscraping, it is important that you ensure you are in compliance with the company's terms and conditions. It is illegal to scrape some sites and to do certain things with data obtained from APIs. </p>
+
+<ul>
+  <li><a href="https://developer.uber.com/">Uber API</a></li>
+  <li><a href="https://developer.twitter.com/en/apply-for-access">Twitter API</a></li>
+  <li><a href="http://insideairbnb.com/get-the-data.html">Airbnb locations dataset download</a></li>
+  <li><a href="https://www.yelp.com/dataset/download">Yelp dataset download</a></li>
+  <li><a href="https://www.yelp.com/fusion">Yelp Fusion API</a></li>
+  <li><a href="https://www.lyft.com/bikes/bay-wheels/system-data">Bay Wheels data</a></li>
+
+</ul>
+
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+
+  </div>
+  <footer id="contentinfo" class="body">
+  </footer><!-- /#contentinfo -->
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
