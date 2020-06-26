@@ -161,9 +161,9 @@ a.anchor-link {
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
   animation-name: fade;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 @-webkit-keyframes fade {
