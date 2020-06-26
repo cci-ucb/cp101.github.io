@@ -72,15 +72,55 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 
-
-<div class="container">
+<!-- Original Heading and Caption of the Site-->
+<!--<div class="container">
   <img src="./assets/images/udpimg_cropped.jpg" alt="Notebook" style="width:100%;">
   <div class="content">
     <h1> Introduction to Urban Data Analytics</h1>
     <p>City and Regional Planning 101</p>
   </div>
-</div>
+</div>-->
+        
+<div class="slideshow-container">
 
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <img src="./assets/images/udpimg_cropped.jpg" alt="Notebook" style="width:100%;">
+    <div class="content">
+    <h1> Introduction to Urban Data Analytics</h1>
+    <p>City and Regional Planning 101</p>
+    </div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 3</div>
+    <img src="./assets/images/udpimg_cropped.jpg" alt="Notebook" style="width:100%;">
+    <div class="text">Caption Two</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 3</div>
+    <img src="./assets/images/udpimg_cropped.jpg" alt="Notebook" style="width:100%;">
+    <div class="text">Caption Three</div>
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+             
+        
+        
+<!-- Where the content on the site starts-->
 </div>
 <div class="container">
 <section id="content">
@@ -145,6 +185,25 @@ In the course’s final module, students will use knowledge acquired in earlier 
 </div>
 </div>
 
+<!-- script for slideshow -->
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+        
+        
+        
+        
 
 <!-- <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
