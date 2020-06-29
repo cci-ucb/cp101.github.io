@@ -115,8 +115,10 @@ a.anchor-link {
 /* SLIDE SHOW FORMAT */
 
 .slideshow-container {
-        max-width: 1000px;
-        min-height: 750px;
+        max-width: 1003px;
+        min-width: 1003px;
+        min-height: 401px;
+        max-height: 401px;
         position: relative;
         margin: auto;
       }
