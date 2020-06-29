@@ -116,6 +116,7 @@ a.anchor-link {
 
 .slideshow-container {
         max-width: 1000px;
+        min-height: 750px;
         position: relative;
         margin: auto;
       }
