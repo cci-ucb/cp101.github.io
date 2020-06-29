@@ -226,20 +226,21 @@ a.anchor-link {
         }
 
 /* Column formatting for homepage */
-/* Create two equal columns that floats next to each other */
-.column_content {
+/* Create two  columns that floats next to each other */
+.column {
   float: left;
-  width: 70%;
   padding: 10px;
   height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+  width: 70%;
 }
         
-.column_test {
-  float: left;
-  width: 30%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+.right {
+  width: 70%;
 }
+        
 /* Clear floats after the columns */
 .row:after {
   content: "";
