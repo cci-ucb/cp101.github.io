@@ -114,11 +114,11 @@ a.anchor-link {
 
 /* SLIDE SHOW FORMAT */
 
-/*.slideshow-container {
+.slideshow-container {
         max-width: 1000px;
         position: relative;
         margin: auto;
-      }*/
+      }
 
 .slideshow > div {
     position: absolute;
