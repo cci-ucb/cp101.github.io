@@ -6,6 +6,7 @@ Website for Karen Chapple's CY PLAN 101 class
 - Assignments 1-3 examples on this main page contain examples from all previous course iterations 
 - Assignments 1-3 on course iteration sites are only examples from the most recent iteration of the course 
 - Testimonial slides used the Monteserrat font in Google Docs in 11.5 and 14 pt font
+- Slides reference: https://www.w3schools.com/w3css/w3css_slideshow.asp
 
 ## To Update
 - The Spring 2021 page's calendar, course policies, and staff page will need to be updated when content becomes available
