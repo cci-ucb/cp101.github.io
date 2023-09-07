@@ -4,8 +4,8 @@ librarian::shelf(cancensus, stringr, tidyverse)
 # sign up here
 # https://censusmapper.ca/users/sign_in
 # uncomment, set this in global options if you don't want to keep reassigning the key for each R session
-options(cancensus.api_key = as.vector(read.table("~/data/api_keys/censusmapper.txt", header = FALSE)))
-
+api_key = as.vector(read.table("~/data/api_keys/censusmapper.txt", header = FALSE))[[1]]
+options(cancensus.api_key = api_key)
 # cache-ing the vectors is also a nice setting to avoid repeating api pulls
 # see https://cran.r-project.org/web/packages/cancensus/vignettes/cancensus.html for getting started
 
