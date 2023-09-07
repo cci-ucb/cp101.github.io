@@ -30,7 +30,7 @@ all21_census_vecs <- list_census_vectors(dataset_var)
 
 all21_census_vecs %>% glimpse()
 
-## ACS table <-> canadian census topics equivalent ##
+## 2015 - 2019 ACS table <-> canadian census topics equivalent ##
 
 # B01003: Total Population <-> Population
 # B03002: Hispanic or Latino by Race <-> Visible minority
@@ -89,6 +89,15 @@ write.csv(census21_data, "~/git/cp101.github.io/labs/lab02/census21_data.csv")
 all06_census_vecs <- list_census_vectors("CA06")
 
 all06_census_vecs %>% glimpse()
+
+## 2000 Census tables <-> canadian census topics equivalent ##
+
+# P001.Total Population <-> Population
+# P007. Hispanic or Latino by Race <-> Visible minority
+# P014. Household Type by Household Size <-> Main mode of commuting for the employed labour force
+# P030. Means of Transportation to Work <-> Household size
+# P052. Household Income in 1999 <-> Income groups for all households
+
 
 # 2006 census vectors
 visible_minority06 <- all06_census_vecs %>%
