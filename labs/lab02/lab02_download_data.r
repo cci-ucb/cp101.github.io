@@ -2,11 +2,11 @@ librarian::shelf(cancensus, stringr, tidyverse)
 
 # you will need an api from cancensus to be able to use this script 
 # sign up here
+
 # https://censusmapper.ca/users/sign_in
-# uncomment, set this in global options if you don't want to keep reassigning the key for each R session
-options(cancensus.api_key = "CensusMapper_0b92e5c233577930002b12a0e9d2d7d9")
-# cache-ing the vectors is also a nice setting to avoid repeating api pulls
 # see https://cran.r-project.org/web/packages/cancensus/vignettes/cancensus.html for getting started
+options(cancensus.api_key = as.vector(read.table("~/data/api_keys/censusmapper.txt", header = FALSE)))
+
 
 # to pull year census data
 dataset_var = "CA21"
