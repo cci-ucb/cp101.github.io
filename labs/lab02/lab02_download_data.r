@@ -61,8 +61,8 @@ housing_type21 <- all21_census_vecs %>%
   pull(vector)
   
 hh_income21 <- all21_census_vecs %>%
-  filter(str_detect(tolower(details), "household total income groups") &
-           (type == "Total")) %>%
+  filter(str_detect(tolower(details), "household \\S+ income groups") &
+           (type == "Total") & is.na(parent_vector)) %>%
     select(vector, label, parent_vector, details) %>%
     distinct(vector) %>%
     pull(vector)
