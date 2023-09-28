@@ -1,4 +1,4 @@
-""" Utility functions for City Planning 101 Twitter API lab.
+""" Utility functions for GGR337 CKAN API lab.
 
 These functions have been adapted from Data 100 course materials.
 """
@@ -42,14 +42,13 @@ def validate_authentication(keys):
         Nothing, prints out a message based on if the keys are valid or not.
     """
     import tweepy
-    from tweepy.error import TweepError
     import logging
     try:
         auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
         auth.set_access_token(keys["access_token"], keys["access_token_secret"])
         api = tweepy.API(auth)
-        print("The keys are valid. Your username is:", api.auth.get_username())
-    except TweepError as e:
+        print("The keys are valid. Your username is:", api.get_lists())
+    except tweepy.TweepyException as e:
         logging.warning("There was a Tweepy error. Double check your API keys and try again.")
         logging.warning(e)
     
