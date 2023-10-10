@@ -3,94 +3,27 @@
 These functions have been adapted from Data 100 course materials.
 """
 
-def download_recent_tweets_by_user(user_account_name, keys):
-    """Downloads tweets by one Twitter user.
+def retrieve_package(keys):
+    """Downloads package info of a dataset using CKAN's API
 
     Args:
-        user_account_name (str): The name of the Twitter account
-          whose tweets will be downloaded.
         keys (dict): A Python dictionary with Twitter authentication
           keys (strings), like this (but filled in):
             {
-                "consumer_key": "<your Consumer Key here>",
-                "consumer_secret":  "<your Consumer Secret here>",
-                "access_token": "<your Access Token here>",
-                "access_token_secret": "<your Access Token Secret here>"
+                "id": "<dataset id here>",
             }
 
     Returns:
         list: A list of Dictonary objects, each representing one tweet."""
-    import tweepy
-    try:
-        auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
-        auth.set_access_token(keys["access_token"], keys["access_token_secret"])
-        api = tweepy.API(auth)
-        tweets = [t._json for t in tweepy.Cursor(api.user_timeline, id=user_account_name, 
-                                             tweet_mode='extended').items()]
-    except TweepError as e:
-        logging.warning("There was a Tweepy error. Double check your API keys and try again.")
-        logging.warning(e)
-    return tweets
-
-def download_recent_tweets_by_hashtag(hashtag, keys, location=None, count=15):
-    """Downloads tweets associated with a hashtag.
-
-    Args:
-        user_account_name (str): The value of the topic associated with out the hashtag
-        keys (dict): A Python dictionary with Twitter authentication
-          keys (strings), like this (but filled in):
-            {
-                "consumer_key": "<your Consumer Key here>",
-                "consumer_secret":  "<your Consumer Secret here>",
-                "access_token": "<your Access Token here>",
-                "access_token_secret": "<your Access Token Secret here>"
-            }
-        location: The longitude, latitude, and radius we are centering our search around
-            "37.8716,-122.2727,1km"
-    Returns:
-        list: A list of Dictonary objects, each representing one tweet."""
-    import tweepy
-    try:
-        auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
-        auth.set_access_token(keys["access_token"], keys["access_token_secret"])
-        api = tweepy.API(auth)
-        tweets = [t._json for t in tweepy.Cursor(api.search,q="#" + hashtag,
-                                                 location = location,lang="en").items(count)]
-    except TweepError as e:
-        logging.warning("There was a Tweepy error. Double check your API keys and try again.")
-        logging.warning(e)
-    return tweets
-
-def write_data(dataset, path):
-    """Saves a list of data to a file in the local filesystem. Extension
-    must be .json.
-
-    Args:
-        dataset (list): A list of data objects (of type Dictionary) to
-          be saved.
-        path (str): The place where the data will be saved.
-
-    Returns:
-        None"""
-    import json
-    with open(path, "w") as f:        
-        json.dump(tweets, f)
-        
-def read_data(path):
-    """Loads data that have previously been saved as a json file.
-    
-    Calling read_data(path) after write_data(dataset, path)
-    will produce the same list of tweets.
-    
-    Args:
-        path (str): The place where the data were saved.
-
-    Returns:
-        list: A list of Dictionary objects, each representing one dataset."""
-    import json
-    with open(path, "r") as f:
-        tweets = json.load(f)
-    return tweets
+    import requests
+    # Toronto Open Data is stored in a CKAN instance. It's APIs are documented here:
+    # https://docs.ckan.org/en/latest/api/
+    base_url = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
+    # Datasets are called "packages". Each package can contain many "resources"
+	# To retrieve the metadata for this package and its resources, use the package name in this page's URL:
+    url = base_url + "/api/3/action/package_show"
+    package = requests.get(url, params = keys).json()
+    return package
 
 def load_vader():
     """Returns a DataFrame of the VADER sentiment lexicon. Row indices correspond
