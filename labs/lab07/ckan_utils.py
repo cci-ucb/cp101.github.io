@@ -7,23 +7,50 @@ def retrieve_package(keys):
     """Downloads package info of a dataset using CKAN's API
 
     Args:
-        keys (dict): A Python dictionary with Twitter authentication
+        keys (dict): A Python dictionary with Toronto Open Dataset id 
           keys (strings), like this (but filled in):
             {
                 "id": "<dataset id here>",
             }
 
     Returns:
-        list: A list of Dictonary objects, each representing one tweet."""
+        list: A list of Dictonary objects, each representing help, response, and result."""
     import requests
     # Toronto Open Data is stored in a CKAN instance. It's APIs are documented here:
     # https://docs.ckan.org/en/latest/api/
     base_url = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
     # Datasets are called "packages". Each package can contain many "resources"
-	# To retrieve the metadata for this package and its resources, use the package name in this page's URL:
+    # To retrieve the metadata for this package and its resources, use the package name in this page's URL:
     url = base_url + "/api/3/action/package_show"
     package = requests.get(url, params = keys).json()
     return package
+
+
+def load_tpl_events(method):
+     """Loads the dataframe of the toronto public library events feeding using the predownloaded csv or API request
+    
+    Args:
+        method (string): can either be 'read_csv' for predownloaded csv or 'API' for API request
+        """
+        
+    if method == "read_csv":
+        return pd.read_csv("tpl-events-feed.csv")
+    elif method == "API":
+        
+        package = retrieve_package("library-branch-programs-and-events-feed")
+        
+        
+        for idx, resource in enumerate(package["result"]["resources"]):
+            if resource["datastore_active"]:
+                # to get all records in CSV format
+                url = base_url + "/datastore/dump/" + resource["id"]
+                # do a GET request on the url and access its text attribute
+                resource_dump_data = requests.get(url).text
+                # read the raw csv text into a pandas dataframe to work with it
+                return pd.read_csv(StringIO(resource_dump_data), sep=",")
+    else:
+        print("Unacceptable argument for 'method'. Use either 'read_csv' or 'API'."
+        return
 
 def load_vader():
     """Returns a DataFrame of the VADER sentiment lexicon. Row indices correspond
