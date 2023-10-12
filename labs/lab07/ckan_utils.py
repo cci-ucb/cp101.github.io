@@ -3,170 +3,80 @@
 These functions have been adapted from Data 100 course materials.
 """
 
-def load_keys(path):
-    """Loads your Twitter authentication keys from a file on disk.
-    
-    Args:
-        path (str): The path to your key file.  The file should
-          be in JSON format and look like this (but filled in):
-            {
-                "consumer_key": "<your Consumer Key here>",
-                "consumer_secret":  "<your Consumer Secret here>",
-                "access_token": "<your Access Token here>",
-                "access_token_secret": "<your Access Token Secret here>"
-            }
-    
-    Returns:
-        dict: A dictionary mapping key names (like "consumer_key") to
-          key values."""
-    
-    import json
-    with open(path) as f:
-        keys = json.load(f)
-    return keys
+def retrieve_package(keys):
+    """Downloads package info of a dataset using CKAN's API
 
-def validate_authentication(keys):
-    """Tests that keys work. 
-    
     Args:
-        keys (dict): A Python dictionary with Twitter authentication
+        keys (dict): A Python dictionary with Toronto Open Dataset id 
           keys (strings), like this (but filled in):
             {
-                "consumer_key": "<your Consumer Key here>",
-                "consumer_secret":  "<your Consumer Secret here>",
-                "access_token": "<your Access Token here>",
-                "access_token_secret": "<your Access Token Secret here>"
+                "id": "<dataset id here>",
             }
+
+    Returns:
+        list: A list of Dictonary objects, each representing help, response, and result."""
+    import requests
+    # Toronto Open Data is stored in a CKAN instance. It's APIs are documented here:
+    # https://docs.ckan.org/en/latest/api/
+    base_url = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
+    # Datasets are called "packages". Each package can contain many "resources"
+    # To retrieve the metadata for this package and its resources, use the package name in this page's URL:
+    url = base_url + "/api/3/action/package_show"
+    package = requests.get(url, params = keys).json()
+    return package
+
+
+def load_tpl_events(method):
+    """Loads the dataframe of the toronto public library events feeding using the predownloaded csv or API request
     
-    Returns:
-        Nothing, prints out a message based on if the keys are valid or not.
-    """
-    import tweepy
-    import logging
-    try:
-        auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
-        auth.set_access_token(keys["access_token"], keys["access_token_secret"])
-        api = tweepy.API(auth)
-        print("The keys are valid. Your username is:", api.get_lists())
-    except tweepy.TweepyException as e:
-        logging.warning("There was a Tweepy error. Double check your API keys and try again.")
-        logging.warning(e)
-    
-def download_recent_tweets_by_user(user_account_name, keys):
-    """Downloads tweets by one Twitter user.
-
     Args:
-        user_account_name (str): The name of the Twitter account
-          whose tweets will be downloaded.
-        keys (dict): A Python dictionary with Twitter authentication
-          keys (strings), like this (but filled in):
-            {
-                "consumer_key": "<your Consumer Key here>",
-                "consumer_secret":  "<your Consumer Secret here>",
-                "access_token": "<your Access Token here>",
-                "access_token_secret": "<your Access Token Secret here>"
-            }
-
-    Returns:
-        list: A list of Dictonary objects, each representing one tweet."""
-    import tweepy
-    try:
-        auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
-        auth.set_access_token(keys["access_token"], keys["access_token_secret"])
-        api = tweepy.API(auth)
-        tweets = [t._json for t in tweepy.Cursor(api.user_timeline, id=user_account_name, 
-                                             tweet_mode='extended').items()]
-    except TweepError as e:
-        logging.warning("There was a Tweepy error. Double check your API keys and try again.")
-        logging.warning(e)
-    return tweets
-
-def download_recent_tweets_by_hashtag(hashtag, keys, location=None, count=15):
-    """Downloads tweets associated with a hashtag.
-
-    Args:
-        user_account_name (str): The value of the topic associated with out the hashtag
-        keys (dict): A Python dictionary with Twitter authentication
-          keys (strings), like this (but filled in):
-            {
-                "consumer_key": "<your Consumer Key here>",
-                "consumer_secret":  "<your Consumer Secret here>",
-                "access_token": "<your Access Token here>",
-                "access_token_secret": "<your Access Token Secret here>"
-            }
-        location: The longitude, latitude, and radius we are centering our search around
-            "37.8716,-122.2727,1km"
-    Returns:
-        list: A list of Dictonary objects, each representing one tweet."""
-    import tweepy
-    try:
-        auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
-        auth.set_access_token(keys["access_token"], keys["access_token_secret"])
-        api = tweepy.API(auth)
-        tweets = [t._json for t in tweepy.Cursor(api.search,q="#" + hashtag,
-                                                 location = location,lang="en").items(count)]
-    except TweepError as e:
-        logging.warning("There was a Tweepy error. Double check your API keys and try again.")
-        logging.warning(e)
-    return tweets
-
-def save_tweets(tweets, path):
-    """Saves a list of tweets to a file in the local filesystem. Extension
-    must be .json.
-
-    Args:
-        tweets (list): A list of tweet objects (of type Dictionary) to
-          be saved.
-        path (str): The place where the tweets will be saved.
-
-    Returns:
-        None"""
-    import json
-    with open(path, "w") as f:        
-        json.dump(tweets, f)
+        method (string): can either be 'read_csv' for predownloaded csv or 'API' for API request
+        """
         
-def load_tweets(path):
-    """Loads tweets that have previously been saved as a json file.
-    
-    Calling load_tweets(path) after save_tweets(tweets, path)
-    will produce the same list of tweets.
-    
-    Args:
-        path (str): The place where the tweets were be saved.
-
-    Returns:
-        list: A list of Dictionary objects, each representing one tweet."""
-    import json
-    with open(path, "r") as f:
-        tweets = json.load(f)
-    return tweets
-
-def get_user_tweets_with_cache(user_account_name, keys_path):
-    """Get recent tweets from one user, loading from a disk cache if available.
-    
-    The first time you call this function, it will download tweets by
-    a user.  Subsequent calls will not re-download the tweets; instead
-    they'll load the tweets from a save file in your local filesystem.
-    All this is done using the functions you defined in the previous cell.
-    This has benefits and drawbacks that often appear when you cache data:
-    
-    +: Using this function will prevent extraneous usage of the Twitter API.
-    +: You will get your data much faster after the first time it's called.
-    -: If you really want to re-download the tweets (say, to get newer ones,
-       or because you screwed up something in the previous cell and your
-       tweets aren't what you wanted), you'll have to find the save file
-       (which will look like <something>_recent_tweets.pkl) and delete it.
-    
-    Args:
-        user_account_name (str): The Twitter handle of a user, without the @.
-        keys_path (str): The path to a JSON keys file in your filesystem.
-    """
-    ds_tweets_save_path = '{}_recent_tweets.pkl'.format(user_account_name)
-    if not Path(ds_tweets_save_path).is_file():
-        tweets = download_recent_tweets_by_user(user_account_name, load_keys(keys_path))
-        save_tweets(tweets, ds_tweets_save_path)
+    if method == "read_csv":
+        return pd.read_csv("tpl-events-feed.csv")
+    elif method == "API":
         
-    return load_tweets(ds_tweets_save_path)
+        package = retrieve_package("library-branch-programs-and-events-feed")
+        
+        
+        for idx, resource in enumerate(package["result"]["resources"]):
+            if resource["datastore_active"]:
+                # to get all records in CSV format
+                url = base_url + "/datastore/dump/" + resource["id"]
+                # do a GET request on the url and access its text attribute
+                resource_dump_data = requests.get(url).text
+                # read the raw csv text into a pandas dataframe to work with it
+                return pd.read_csv(StringIO(resource_dump_data), sep=",")
+    else:
+        print("Unacceptable argument for 'method'. Use either 'read_csv' or 'API'.")
+        return
+              
+def load_public_survey(method):
+    """Loads the dataframe of the toronto public survey results using the predownloaded csv or API request
+    
+    Args:
+        method (string): can either be 'read_csv' for predownloaded csv or 'API' for API request
+        """
+        
+    if method == "read_csv":
+        return pd.read_csv("torr-public-survey-results.csv")
+    elif method == "API":
+        
+        package = retrieve_package({ "id": "toronto-office-of-recovery-and-rebuild-public-survey-results"})
+        
+        for idx, resource in enumerate(package["result"]["resources"]):
+           # To get metadata for non datastore_active resources:
+            if resource["format"] == "CSV":
+                url = base_url + "/api/3/action/resource_show?id=" + resource["id"]
+                resource_data = requests.get(url).json()
+                # do a GET request on the url and access its text attribute
+                resource_dump_data = requests.get(resource_data['result']['url']).text
+                # read the raw csv text into a pandas dataframe to work with it
+                return pd.read_csv(StringIO(resource_dump_data), sep=",")
+    else:
+        print("Unacceptable argument for 'method'. Use either 'read_csv' or 'API'.")
+        return
 
 def load_vader():
     """Returns a DataFrame of the VADER sentiment lexicon. Row indices correspond
@@ -182,7 +92,7 @@ def load_vader():
     sent['polarity'] = sent['polarity'].apply(float)
     return sent
 
-def clean_tweets(s):
+def clean_string(s):
     """Lowercase and remove punctuation from a pd.Series object containing text.
     
     Args:
@@ -198,11 +108,10 @@ def compose_polarity(df, lex):
     for each word in df.
     
     Args:
-        df (DataFrame): a single-column collection of tweets indexed by tweet ID.
+        df (DataFrame): a single-column collection of responses indexed by respondent ID.
         lex (DataFrame): a sentiment lexicon containing one column "polarity". The row indices
             of this df must be words."""
-    df = df[['cleaned']]
-    tidy_format = df.T.iloc[0].str.split(expand=True).stack().reset_index()
+    tidy_format = df.str.split(expand=True).stack().reset_index()
     tidy_format = tidy_format.set_index('id').rename(columns={'level_1': 'num', 0: 'word'})
     pol = tidy_format.merge(lex, how='left', left_on='word', right_index=True)
     return pol.groupby(pol.index).agg({'polarity': sum})
