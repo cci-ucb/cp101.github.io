@@ -27,7 +27,7 @@ def retrieve_package(keys):
 
 
 def load_tpl_events(method):
-     """Loads the dataframe of the toronto public library events feeding using the predownloaded csv or API request
+    """Loads the dataframe of the toronto public library events feeding using the predownloaded csv or API request
     
     Args:
         method (string): can either be 'read_csv' for predownloaded csv or 'API' for API request
@@ -49,7 +49,33 @@ def load_tpl_events(method):
                 # read the raw csv text into a pandas dataframe to work with it
                 return pd.read_csv(StringIO(resource_dump_data), sep=",")
     else:
-        print("Unacceptable argument for 'method'. Use either 'read_csv' or 'API'."
+        print("Unacceptable argument for 'method'. Use either 'read_csv' or 'API'.")
+        return
+              
+def load_public_survey(method):
+    """Loads the dataframe of the toronto public survey results using the predownloaded csv or API request
+    
+    Args:
+        method (string): can either be 'read_csv' for predownloaded csv or 'API' for API request
+        """
+        
+    if method == "read_csv":
+        return pd.read_csv("torr-public-survey-results.csv")
+    elif method == "API":
+        
+        package = retrieve_package({ "id": "toronto-office-of-recovery-and-rebuild-public-survey-results"})
+        
+        for idx, resource in enumerate(package["result"]["resources"]):
+           # To get metadata for non datastore_active resources:
+            if resource["format"] == "CSV":
+                url = base_url + "/api/3/action/resource_show?id=" + resource["id"]
+                resource_data = requests.get(url).json()
+                # do a GET request on the url and access its text attribute
+                resource_dump_data = requests.get(resource_data['result']['url']).text
+                # read the raw csv text into a pandas dataframe to work with it
+                return pd.read_csv(StringIO(resource_dump_data), sep=",")
+    else:
+        print("Unacceptable argument for 'method'. Use either 'read_csv' or 'API'.")
         return
 
 def load_vader():
