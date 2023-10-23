@@ -32,42 +32,31 @@ all21_census_vecs %>% glimpse()
 
 ## 2015 - 2019 ACS table <-> canadian census topics equivalent ##
 
-# B01003: Total Population <-> Population
-# B03002: Hispanic or Latino by Race <-> Visible minority
-# B08301: Means of Transportation to Work <-> Main mode of commuting for the employed labour force
-# B11016: Household Type by Household Size <-> Household type
-# B19001: Household Income in the Past 12 Months (in 2018 Inflation-Adjusted Dollars) <-> 
-
 # 2021 census vectors
-visible_minority21 <- all21_census_vecs %>%
-  filter(str_detect(tolower(details), "total - visible") &
+low_income_pct <- all21_census_vecs %>%
+  filter(str_detect(tolower(details), "prevalence of") &
            (type == "Total")) %>%
   select(vector, label, parent_vector, details) %>%
   distinct(vector) %>%
   pull(vector)
 
-means_of_transportation21 <- all21_census_vecs %>%
-  filter(((vector == "v_CA21_7632") | (parent_vector == "v_CA21_7632")) &
+gini <- all21_census_vecs %>%
+  filter(str_detect(tolower(details), "gini") &
            (type == "Total")) %>%
   select(vector, label, parent_vector, details) %>%
   distinct(vector) %>%
   pull(vector)
 
-housing_type21 <- all21_census_vecs %>%
-  filter(str_detect(tolower(details), "private households by household size") &
+seniors <- all21_census_vecs %>%
+  filter((vector %in% c("v_CA21_8", "v_CA21_251", "v_CA21_386", "v_CA21_389")) &
            (type == "Total")) %>%
   select(vector, label, parent_vector, details) %>%
   distinct(vector) %>%
   pull(vector)
 
-hh_income21 <- all21_census_vecs %>%
-  filter(str_detect(tolower(details), "household \\S+ income groups") &
-           (type == "Total") & is.na(parent_vector)) %>%
-  select(vector, label, parent_vector, details) %>%
-  distinct(vector) %>%
-  pull(vector)
+census21_vecs <- c(low_income_pct, gini, seniors)
 
-census21_vecs <- c(visible_minority21, means_of_transportation21, housing_type21, hh_income21)
+census21_vecs %>% print(n = Inf, na.print = "")
 
 # create census data objects
 census21_data <- get_census(dataset = "CA21", regions = list(CSD = CSD_regions),
@@ -79,7 +68,7 @@ census21_data %>% glimpse()
 census21_data %>% head(5)
 
 # write to csv
-write.csv(census21_data, "~/git/cp101.github.io/labs/lab03/census21_data.csv")
+write.csv(census21_data, "~/git/cp101.github.io/labs/lab10/census21_data.csv")
 
 # repeat all of the above for 2006 census vectors
 # to pull year census data
