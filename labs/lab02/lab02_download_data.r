@@ -79,7 +79,7 @@ census21_data %>% glimpse()
 census21_data %>% head(5)
 
 # write to csv
-write.csv(census21_data, "~/git/cp101.github.io/labs/lab02/census21_data.csv")
+write.csv(census21_data, "~/git/cp101.github.io/labs/lab03/census21_data.csv")
 
 # repeat all of the above for 2006 census vectors
 # to pull year census data
